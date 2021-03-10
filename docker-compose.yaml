@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  splunk:
+    depends_on:
+      - rsyslog
+    image: splunk/splunk:latest
+    volumes:
+      - /opt/splunk/etc/:/opt/splunk/etc/
+      - /opt/splunk/var/:/opt/splunk/var/
+      - /opt/rsyslog/data/:/opt/splunk/rsyslog/
+    ports:
+      - 8001:8000
+    restart: always
+    environment:
+      SPLUNK_START_ARGS: '--accept-license'
+      SPLUNK_PASSWORD: 'Temp.1234'
+      TZ: 'Europe/Rome'
+  
+  rsyslog:
+    image: skyrider/rsyslog:latest
+    volumes:
+      - /opt/rsyslog/data/:/data/
