@@ -14,10 +14,13 @@ services:
     restart: always
     environment:
       SPLUNK_START_ARGS: '--accept-license'
-      SPLUNK_PASSWORD: 'Temp.1234'
+      SPLUNK_PASSWORD: 'Temp$1234'
       TZ: 'Europe/Rome'
   
   rsyslog:
     image: skyrider/rsyslog:latest
     volumes:
       - /opt/rsyslog/data/:/data/
+    ports: 
+      - 514:514/udp
+      - 1514:1514/tcp
