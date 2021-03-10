@@ -5,6 +5,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get upgrade -y && apt-get install rsyslog -y && rm -rf /var/lib/apt/lists/*
 
+RUN chown -R syslog:syslog /data/syslog
+
 COPY tcp.conf /etc/rsyslog.d/tcp.conf
 COPY udp.conf /etc/rsyslog.d/udp.conf
 

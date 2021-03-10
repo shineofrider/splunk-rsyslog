@@ -8,13 +8,14 @@ services:
     volumes:
       - /opt/splunk/etc/:/opt/splunk/etc/
       - /opt/splunk/var/:/opt/splunk/var/
-      - /opt/rsyslog/data/:/opt/splunk/rsyslog/
+      - /opt/rsyslog/data/:/data/
+
     ports:
       - 8001:8000
     restart: always
     environment:
       SPLUNK_START_ARGS: '--accept-license'
-      SPLUNK_PASSWORD: 'Temp$1234'
+      SPLUNK_PASSWORD: 'Temp1234'
       TZ: 'Europe/Rome'
   
   rsyslog:
